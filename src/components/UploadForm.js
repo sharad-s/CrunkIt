@@ -102,35 +102,7 @@ export default class UploadForm extends Component {
 			});
 	}
 
-	// async getWatermarkAudioBuffer() {
-	// 	const reader = new window.FileReader();
-	// 	reader.readAsArrayBuffer(trackFile);
-	// 	reader.onloadend = async () => {
-	// 		const audioBuffer = await Buffer.from(reader.result);
-	// 		console.log("UPLOADED: ", audioBuffer);
-	// 		this.setState({ watermarkAudioBuffer: audioBuffer });
-	// 	};
-	// }
-
-	async readAsArrayBuffer(item) {
-		const fileReader = new FileReader();
-		let arrayBuffer;
-		fileReader.onloadend = () => {
-			arrayBuffer = fileReader.result;
-			return arrayBuffer;
-		};
-
-		fileReader.readAsArrayBuffer(item);
-	}
-
 	render() {
-		let p = (
-			<div>
-				<p> File Uploaded! {this.state.originalAudioURL} </p>
-				<button onClick={this.crunkIt}> CRUNK IT </button>
-			</div>
-		);
-
 		let crunking = (
 			<div>
 				<p>
@@ -144,7 +116,7 @@ export default class UploadForm extends Component {
 			<div>
 				<p>Crunked! Enjoy:</p>
 				<a href={this.state.crunkedAudioURL} target="_blank">
-					{this.state.crunkedAudioURL}
+					WATERMARKED FILE
 				</a>
 			</div>
 		);
@@ -159,6 +131,7 @@ export default class UploadForm extends Component {
 								select trak:{" "}
 								<input
 									type="file"
+									accept="audio/*"
 									name="trackFile"
 									onChange={this.onChange}
 								/>
