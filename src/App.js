@@ -4,15 +4,16 @@ import "./App.css";
 
 // Components
 import UploadForm from "./components/UploadForm";
+import OrbitLog from "./components/Log/OrbitLog";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <UploadForm />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="App">
+				<OrbitLog />
+			</div>
+		);
+	}
 }
 
 export default App;
