@@ -79,12 +79,11 @@ export default class OrbitLog extends Component {
 		try {
 			try {
 				db = await orbitdb.create(dbName, "eventlog", {
-					write: ["*"],
-					overwrite: true
+					write: ["*"]
 				});
 				console.log("Database CREATED:", dbName, db.address.toString());
 			} catch (err) {
-				db = await orbitdb.log(dbName);
+				db = await orbitdb.log(dbName, { write: ["*"] });
 				console.log("Database OPENED:", dbName, db.address.toString());
 			}
 		} catch (err) {
@@ -175,7 +174,7 @@ export default class OrbitLog extends Component {
 					<div className="input-group mb-3">
 						<div className="input-group mb-3">
 							<p>
-								Create DB Using Name:
+								Create/Open DB Using Name:
 								<input
 									type="text"
 									name="dbName"

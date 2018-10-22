@@ -1,7 +1,13 @@
-# 😩☝🏽Crunk It 😳👊🏽
+# Orbit-DB eventlog
 
-This is a very simple React app which auto-watermarks uploaded audio. [Demo](https://stark-plains-38840.herokuapp.com/)
+This branch is a test of the EventLog database in OrbitDB. [Demo](https://build-pcagewcyzj.now.sh)
 
-This app was made to test my custom fork of @jackedgson 's package [crunker](https://github.com/jackedgson/crunker). 
+## Usage
 
-Its logic will be used at [Trakz.co](http://trakz.co) to watermark every beat a producer uploads to the site, so that their public-facing content is at least immediately protected from theft.
+-   Send a message
+-   Create/Open a DB by its name
+-   Open a DB by its address
+
+## Help needed
+
+Cross-Client connectivity needs to be figured out. Currently this only works locally. help
