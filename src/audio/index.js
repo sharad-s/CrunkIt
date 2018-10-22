@@ -1,6 +1,6 @@
-const WATERMARKMP3URL = require("./WATERMARK.mp3");
+// const WATERMARKMP3URL = require("./WATERMARK.mp3");
 
-export default WATERMARKMP3URL;
+export default true;
 // // Read input file
 // const reader = new window.FileReader();
 // reader.readAsArrayBuffer("./WATERMARK.mp3");

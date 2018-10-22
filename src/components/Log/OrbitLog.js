@@ -9,7 +9,8 @@ export default class OrbitLog extends Component {
 		super(props);
 		this.state = {
 			message: "",
-			dbName: "testdb",
+			dbName: "",
+			currentDBName: "",
 			feed: {},
 			db: null
 		};
@@ -65,7 +66,7 @@ export default class OrbitLog extends Component {
 
 		// // Query
 		const feed = db.iterator({ limit: -1 }).collect();
-		this.setState({ feed, db, dbName });
+		this.setState({ feed, db, dbName, currentDBName: dbName });
 	}
 
 	render() {
@@ -120,7 +121,10 @@ export default class OrbitLog extends Component {
 				</form>
 
 				<hr />
-				<LogFeed feed={this.state.feed} />
+				<LogFeed
+					feed={this.state.feed}
+					dbName={this.state.currentDBName}
+				/>
 			</div>
 		);
 	}
