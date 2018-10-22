@@ -32,9 +32,7 @@ node.on("ready", async () => {
 
 const getOrbitDB = node => {
 	// Instantiate Orbit
-	return new OrbitDB(node, null, {
-		peerId: "QmTgbSay5Lj6mBwkzTSAfjTZKkUKjywiW1pf5QL1eLAXMB"
-	});
+	return new OrbitDB(node);
 
 	// // Create / Open a database
 	// const db = await orbitdb.log(DATABASE_NAME);
