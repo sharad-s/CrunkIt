@@ -17,7 +17,7 @@ const LogFeed = props => {
 			<h1>
 				{dbName}({feed.length})
 			</h1>
-			<p> DB Address: {dbAddress} </p>
+			<p> DB Address: "{dbAddress}" </p>
 			<ul>{feedItems}</ul>
 		</div>
 	);

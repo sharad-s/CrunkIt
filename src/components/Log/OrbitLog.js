@@ -34,12 +34,13 @@ export default class OrbitLog extends Component {
 		});
 	}
 
+	// Form field edit
 	onChange(e) {
 		e.preventDefault();
 		this.setState({ [e.target.name]: e.target.value });
 	}
 
-	// Form Submit - Submit a message to the current DB
+	// Form Submit - Message
 	async onSubmitMessage(e) {
 		e.preventDefault();
 		const { db, message } = this.state;
@@ -53,7 +54,7 @@ export default class OrbitLog extends Component {
 		this.setState({ feed, message: "" });
 	}
 
-	// Form Submit - Create or "open" a new DB given an input name
+	// Form Submit - DB Name
 	async onSubmitDatabase(e) {
 		e.preventDefault();
 		const { dbName } = this.state;
@@ -61,7 +62,7 @@ export default class OrbitLog extends Component {
 		await this._resetDBWithName(dbName);
 	}
 
-	// Form Submit - Open an existing DB given the input OrbitDB address
+	// Form Submit - DB Address
 	async onSubmitDatabaseAddress(e) {
 		e.preventDefault();
 		const { dbAddress } = this.state;
@@ -69,13 +70,15 @@ export default class OrbitLog extends Component {
 		await this._openDBWithAddress(dbAddress);
 	}
 
+	// Opens an orbitDB instance using a db Name
 	async _resetDBWithName(dbName) {
 		// Get orbitdb
 		const orbitdb = getOrbitDB(node);
+		// await orbitdb.stop();
 
 		let db;
 
-		// Create / Open a database
+		// Create / Open a database if already created
 		try {
 			try {
 				db = await orbitdb.create(dbName, "eventlog", {
@@ -83,6 +86,7 @@ export default class OrbitLog extends Component {
 				});
 				console.log("Database CREATED:", dbName, db.address.toString());
 			} catch (err) {
+				console.log(err.message);
 				db = await orbitdb.log(dbName, { write: ["*"] });
 				console.log("Database OPENED:", dbName, db.address.toString());
 			}
@@ -91,7 +95,6 @@ export default class OrbitLog extends Component {
 		}
 
 		await db.load();
-
 		const currentDBAddress = db.address.toString();
 
 		// Listen for updates from peers
@@ -99,25 +102,29 @@ export default class OrbitLog extends Component {
 			console.log(db.iterator({ limit: -1 }).collect());
 		});
 
-		// // Query
+		// // Query DB on load
 		const feed = db.iterator({ limit: -1 }).collect();
 
 		this.setState({
 			feed,
 			db,
-			dbName: "",
 			currentDBAddress,
 			currentDBName: dbName
 		});
 	}
 
+	// Opens an orbitDB instance using a provided db address
 	async _openDBWithAddress(dbAddress) {
 		// Get orbitdb
 		const orbitdb = getOrbitDB(node);
-		let db;
+		// await orbitdb.stop();
+
+		let { db } = this.state;
 
 		// Open a database
 		db = await orbitdb.log(dbAddress);
+		// db = await orbitdb.open(dbAddress, { type: "eventlog", localonly: });
+
 		const currentDBAddress = db.address.toString();
 		const currentDBName = currentDBAddress.split("/").slice(-1);
 		console.log("Database OPENED at address:", currentDBAddress);
@@ -156,6 +163,7 @@ export default class OrbitLog extends Component {
 									type="text"
 									name="message"
 									onChange={this.onChange}
+									value={this.state.message}
 								/>
 							</p>
 						</div>
@@ -179,6 +187,7 @@ export default class OrbitLog extends Component {
 									type="text"
 									name="dbName"
 									onChange={this.onChange}
+									value={this.state.dbName}
 								/>
 							</p>
 						</div>
@@ -202,6 +211,7 @@ export default class OrbitLog extends Component {
 									type="text"
 									name="dbAddress"
 									onChange={this.onChange}
+									value={this.state.dbAddress}
 								/>
 							</p>
 						</div>
