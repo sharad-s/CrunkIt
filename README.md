@@ -1,6 +1,6 @@
 # Orbit-DB eventlog
 
-This branch is a test of the EventLog database in OrbitDB. [Demo](https://build-pcagewcyzj.now.sh)
+This branch is a test of the EventLog database in OrbitDB. [Demo](https://build-ebbdclubpe.now.sh)
 
 ## Usage
 
