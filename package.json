@@ -7,7 +7,7 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.5",
-    "crunker": "sharad-s/crunker#feature/fit_duration_of_song_0"
+    "crunker": "sharad-s/crunker#master"
   },
   "scripts": {
     "start": "react-scripts start",
